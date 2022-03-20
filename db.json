@@ -19,10 +19,10 @@
       "reminder": true
     },
     {
-      "id": 4,
-      "text": "McDonalds",
-      "day": "September 8th at 16:30pm",
-      "reminder": true
+      "text": "hey",
+      "day": "21/02/2022",
+      "reminder": false,
+      "id": 4
     }
   ]
 }

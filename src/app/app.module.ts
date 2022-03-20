@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
     TasksComponent,
     TaskDetailComponent,
     ButtonComponent,
-    AddTaskComponent
+    AddTaskComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     FormsModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
