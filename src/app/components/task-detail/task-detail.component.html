@@ -1,1 +1,5 @@
-<p>task-detail works!</p>
+<div [ngClass]="{ reminder: task.reminder }" class="task" (click)="onToggle(task)">
+    <div>{{ task.text }}</div>
+    <div>{{ task.day }}</div>
+    <fa-icon [icon]="faTimes" (click)="onDelete(task)"></fa-icon>
+</div>
