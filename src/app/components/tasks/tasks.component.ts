@@ -33,6 +33,11 @@ export class TasksComponent implements OnInit {
     this.service.addTask(task).subscribe((task) => this.tasks.push(task));
   }
 
+  editTask(task: any){
+    this.service.editTask(task).subscribe();
+    this.service.getData().subscribe(resp => this.tasks = resp);
+  }
+
   
 
 }

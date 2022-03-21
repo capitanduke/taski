@@ -37,4 +37,9 @@ export class ServiceService {
     return this.http.post<TASK>(this._url, task, httpOptions);
   }
 
+  editTask(task: TASK): Observable<TASK> {
+    const url = `${this._url}/${task.id}`;
+    return this.http.put<TASK>(url, task, httpOptions);
+  }
+
 }

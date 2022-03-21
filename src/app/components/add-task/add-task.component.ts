@@ -30,7 +30,26 @@ import {
         left: '-600px', 
       })),
       transition('open => closed', [
-        animate('0.5s')
+        animate('0.3s')
+      ]),
+      transition('closed => open', [
+        animate('1s')
+      ]),
+    ]),
+    trigger('openCloseEdit', [
+      // ...
+      state('open', style({
+        height: '350px',
+        position: 'relative',
+        right: '0', 
+      })),
+      state('closed', style({
+        height: '0px',
+        position: 'relative',
+        right: '-600px', 
+      })),
+      transition('open => closed', [
+        animate('0.3s')
       ]),
       transition('closed => open', [
         animate('0.5s')
@@ -40,19 +59,39 @@ import {
 })
 
 export class AddTaskComponent implements OnInit {
+  id!: number;
   text: string = '';
   day: string = '';
   reminder: boolean = false;
-  showAddTask: boolean = true;
+  showAddTask: boolean = false;
   @Output() onAddTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onEditTask: EventEmitter<Task> = new EventEmitter();
   subscription!: Subscription;
+  subscriptionEdit!: Subscription;
+  task!: TASK;
+  boolEdit: boolean = false;
+  testTemp: string = 'test';
 
   constructor(private service: ServiceService, private uiService: UiService) { }
 
   ngOnInit(): void {
     this.subscription = this.uiService
       .onToggle()
-      .subscribe((value) => (this.showAddTask = value));
+      .subscribe(({showAddTask, showEditAdd}) => {
+        this.showAddTask = showAddTask,
+        this.boolEdit = showEditAdd
+      });
+
+    this.subscriptionEdit = this.uiService
+      .onToggleEdit()
+      .subscribe(({task, editToggle, showAddTask}) => {
+        this.task = task,
+        this.id = task.id,
+        this.text = task.text,
+        this.day = task.day
+        this.boolEdit = editToggle
+        this.showAddTask = showAddTask;
+      })
   }
 
   ngOnDestroy() {
@@ -61,7 +100,6 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit(){
-
     if(this.text.length || this.day.length){
       const newTask: any = {
         text: this.text,
@@ -75,9 +113,25 @@ export class AddTaskComponent implements OnInit {
       this.day = '';
       this.reminder = false;
     }
+  }
 
-    
+  onSubmitEdit(){
+    if(this.text.length || this.day.length){
+      const taskUpdated: any = {
+        id: this.id,
+        text: this.text,
+        day: this.day,
+        reminder: this.reminder,
+      };
+      
+      this.onEditTask.emit(taskUpdated);
 
+      this.text = '';
+      this.day = '';
+      this.reminder = false;
+      this.boolEdit = false;
+  
+    }
   }
 
 
