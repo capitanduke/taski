@@ -8,14 +8,19 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Output() openAdd = new EventEmitter;
+  text: string = '';
+  isOpen: boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.text = this.isOpen ? "CLOSE" : "ADD"; 
   }
 
   onClick(){
     this.openAdd.emit();
+    this.isOpen = !this.isOpen;
+    this.text = this.isOpen ? "CLOSE" : "ADD" 
   }
 
 

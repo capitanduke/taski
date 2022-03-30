@@ -16,13 +16,19 @@
       "id": 3,
       "text": "Food Diet44444",
       "day": "May 8th at 16:30pm",
-      "reminder": false
+      "reminder": true
     },
     {
       "id": 4,
       "text": "hey",
       "day": "2626",
-      "reminder": true
+      "reminder": false
+    },
+    {
+      "id": 5,
+      "text": "ssss",
+      "day": "672",
+      "reminder": false
     }
   ]
 }

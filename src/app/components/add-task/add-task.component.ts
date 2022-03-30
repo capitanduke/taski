@@ -42,11 +42,13 @@ import {
         height: '350px',
         position: 'relative',
         right: '0', 
+        top: '0'
       })),
       state('closed', style({
         height: '0px',
         position: 'relative',
         right: '-600px', 
+        top: '0'
       })),
       transition('open => closed', [
         animate('0.3s')
@@ -79,7 +81,9 @@ export class AddTaskComponent implements OnInit {
       .onToggle()
       .subscribe(({showAddTask, showEditAdd}) => {
         this.showAddTask = showAddTask,
-        this.boolEdit = showEditAdd
+        this.boolEdit = showEditAdd,
+        this.text = '',
+        this.day = ''
       });
 
     this.subscriptionEdit = this.uiService
